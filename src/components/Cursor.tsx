@@ -32,7 +32,7 @@ export function Cursor() {
     document.addEventListener('mouseleave', onLeave);
     return () => {
       window.removeEventListener('mousemove', onMove);
-      document.addEventListener('mouseleave', onLeave);
+      document.removeEventListener('mouseleave', onLeave);
     };
   }, [x, y]);
 
@@ -44,18 +44,24 @@ export function Cursor() {
     >
       <motion.div
         animate={{
-          scale: hovering ? 1.7 : 1,
+          scale: hovering ? 1.6 : 1,
+          rotate: hovering ? 90 : 0,
           opacity: visible ? 1 : 0,
         }}
-        transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
-        className="relative h-4 w-4"
+        transition={{ duration: 0.32, ease: [0.22, 1, 0.36, 1] }}
+        className="relative"
+        style={{ filter: 'drop-shadow(0 0 6px rgba(255,255,255,0.55))' }}
       >
-        {/* horizontal stroke */}
-        <span className="absolute left-0 top-1/2 h-px w-full -translate-y-1/2 bg-ivory" />
-        {/* vertical stroke */}
-        <span className="absolute left-1/2 top-0 h-full w-px -translate-x-1/2 bg-ivory" />
-        {/* center mark */}
-        <span className="absolute left-1/2 top-1/2 h-[3px] w-[3px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-ivory" />
+        <svg
+          viewBox="0 0 24 24"
+          className="h-5 w-5"
+          aria-hidden
+        >
+          <path
+            d="M12 1 L13.6 10.4 L23 12 L13.6 13.6 L12 23 L10.4 13.6 L1 12 L10.4 10.4 Z"
+            fill="#FFFFFF"
+          />
+        </svg>
       </motion.div>
     </motion.div>
   );
