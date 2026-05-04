@@ -18,11 +18,9 @@ export const projectImages: Record<string, ProjectMedia> = {
       alt: 'LinkBrain — ontology knowledge platform',
     },
     gallery: [
-      { src: '/products/linkbrain/01-landing.png', alt: 'LinkBrain landing page' },
       { src: '/products/linkbrain/03-detail.png', alt: 'LinkBrain detail view' },
       { src: '/products/linkbrain/04-filtering.png', alt: 'LinkBrain filtering UI' },
       { src: '/products/linkbrain/05-doc.png', alt: 'LinkBrain document detail' },
-      { src: '/products/linkbrain/02-frame.png', alt: 'LinkBrain frame' },
       { src: '/products/linkbrain/07-export.png', alt: 'LinkBrain export 1' },
       { src: '/products/linkbrain/08-export.png', alt: 'LinkBrain export 2' },
       { src: '/products/linkbrain/09-export.png', alt: 'LinkBrain export 3' },
@@ -55,8 +53,6 @@ export const projectImages: Record<string, ProjectMedia> = {
       { src: '/products/kivel/06-screen.png', alt: 'Kivel screen' },
       { src: '/products/kivel/02-screen.png', alt: 'Kivel screen' },
       { src: '/products/kivel/03-screen.png', alt: 'Kivel screen' },
-      { src: '/products/kivel/07-mobile.png', alt: 'Kivel mobile' },
-      { src: '/products/kivel/08-mobile.png', alt: 'Kivel mobile' },
     ],
   },
   'doctor-kong': {

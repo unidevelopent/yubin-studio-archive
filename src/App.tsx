@@ -3,6 +3,7 @@ import { Loader } from './components/Loader';
 import { Cursor } from './components/Cursor';
 import { Nav } from './components/Nav';
 import { Hero } from './components/Hero';
+import { NowBuilding } from './components/NowBuilding';
 import { FeaturedWork } from './components/FeaturedWork';
 import { Metrics } from './components/Metrics';
 import { Pattern } from './components/Pattern';
@@ -46,6 +47,7 @@ export default function App() {
           onSecondary={() => scrollTo('projects')}
           onTertiary={() => scrollTo('work-together')}
         />
+        <NowBuilding />
         <FeaturedWork onOpen={setActive} />
         <Metrics />
         <Pattern />
