@@ -210,7 +210,6 @@ export const projects: Project[] = [
       '약 1억 2천만 원 규모 계약 및 협약',
     ],
     tags: ['B2B SaaS', 'Public Sector', 'Data Automation'],
-    link: 'https://dashboard.knowhow.ceo',
   },
   {
     id: 'investment-saas',

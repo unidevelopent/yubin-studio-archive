@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { useEffect, useState } from 'react';
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
@@ -19,6 +20,23 @@ const fadeUp = (delay = 0) => ({
   transition: { duration: 0.9, ease, delay },
 });
 
+// Live Seoul time, ticks every second
+function useKstTime() {
+  const [now, setNow] = useState<Date>(() => new Date());
+  useEffect(() => {
+    const id = window.setInterval(() => setNow(new Date()), 1000);
+    return () => window.clearInterval(id);
+  }, []);
+  const fmt = new Intl.DateTimeFormat('en-GB', {
+    timeZone: 'Asia/Seoul',
+    hour12: false,
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit',
+  });
+  return fmt.format(now);
+}
+
 export function Hero({
   onPrimary,
   onSecondary,
@@ -28,18 +46,108 @@ export function Hero({
   onSecondary: () => void;
   onTertiary: () => void;
 }) {
+  const time = useKstTime();
+
   return (
     <section
       id="home"
-      className="relative isolate overflow-hidden pt-28 md:pt-32"
+      className="relative isolate overflow-hidden pt-24 md:pt-28"
     >
       <div className="grain" />
+
+      {/* Floating asterisk decoration */}
+      <motion.span
+        aria-hidden
+        initial={{ opacity: 0, rotate: 0 }}
+        animate={{ opacity: 0.55, rotate: 360 }}
+        transition={{
+          opacity: { duration: 1.2, delay: 1.2, ease },
+          rotate: { duration: 28, repeat: Infinity, ease: 'linear' },
+        }}
+        className="pointer-events-none absolute right-[8%] top-[18%] hidden text-rust md:block"
+        style={{ fontSize: 56 }}
+      >
+        ✳
+      </motion.span>
+
+      {/* Sophisticated top bar */}
+      <div className="relative">
+        <div className="mx-auto max-w-page px-6 md:px-10">
+          <div className="flex items-center gap-3 py-3.5 md:gap-5 md:py-4">
+            {/* left animated line */}
+            <motion.span
+              initial={{ scaleX: 0 }}
+              animate={{ scaleX: 1 }}
+              transition={{ duration: 1.2, ease, delay: 0.1 }}
+              className="hidden h-px flex-1 origin-left bg-ink/15 md:block"
+            />
+
+            {/* live time */}
+            <motion.div
+              initial={{ opacity: 0, y: 6 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, ease, delay: 0.4 }}
+              className="flex items-center gap-2"
+            >
+              <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-mute">
+                KST
+              </span>
+              <span className="font-mono tabular-nums text-[12px] tracking-tight text-ink md:text-[13px]">
+                {time}
+              </span>
+            </motion.div>
+
+            <span className="h-3 w-px bg-ink/15" />
+
+            {/* status pulse */}
+            <motion.div
+              initial={{ opacity: 0, y: 6 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, ease, delay: 0.5 }}
+              className="flex items-center gap-2"
+            >
+              <span className="relative flex h-1.5 w-1.5">
+                <span className="absolute inset-0 animate-ping rounded-full bg-rust opacity-70" />
+                <span className="relative h-1.5 w-1.5 rounded-full bg-rust" />
+              </span>
+              <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-ink-soft">
+                Open for collaboration
+              </span>
+            </motion.div>
+
+            <span className="hidden h-3 w-px bg-ink/15 sm:block" />
+
+            <motion.span
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.6, delay: 0.6 }}
+              className="hidden font-mono text-[10px] uppercase tracking-[0.22em] text-mute sm:inline"
+            >
+              Seoul · 37.55°N · 126.97°E
+            </motion.span>
+
+            {/* right animated line */}
+            <motion.span
+              initial={{ scaleX: 0 }}
+              animate={{ scaleX: 1 }}
+              transition={{ duration: 1.2, ease, delay: 0.1 }}
+              className="hidden h-px flex-1 origin-right bg-ink/15 md:block"
+            />
+          </div>
+        </div>
+        <motion.div
+          initial={{ scaleX: 0 }}
+          animate={{ scaleX: 1 }}
+          transition={{ duration: 1.4, ease, delay: 0.2 }}
+          className="mx-auto h-px max-w-page origin-center bg-ink/10"
+        />
+      </div>
 
       <div className="relative mx-auto max-w-page px-6 md:px-10">
         {/* Top meta bar */}
         <motion.div
-          {...fadeUp(0.1)}
-          className="mt-12 flex flex-wrap items-center justify-between gap-4 md:mt-16"
+          {...fadeUp(0.18)}
+          className="mt-10 flex flex-wrap items-center justify-between gap-4 md:mt-14"
         >
           <div className="flex items-center gap-3">
             <span className="label-eyebrow">Yubin Kim</span>
@@ -49,33 +157,41 @@ export function Hero({
             </span>
           </div>
           <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-mute">
-            Seoul, Korea · Available
+            Independent · Available
           </span>
         </motion.div>
 
-        {/* Headline */}
-        <motion.h1
-          {...fadeUp(0.18)}
-          className="display-1 mt-16 text-[14vw] leading-[0.86] md:mt-20 md:text-[128px] lg:text-[168px]"
-        >
-          <span className="block">Systems from</span>
-          <span className="block">
-            <span className="editorial text-rust">Real Problems</span>
+        {/* Headline with line-by-line clip reveal */}
+        <h1 className="display-1 mt-14 text-[14vw] leading-[0.86] md:mt-20 md:text-[128px] lg:text-[168px]">
+          <RevealLine delay={0.28}>
+            <span className="block">Systems from</span>
+          </RevealLine>
+          <RevealLine delay={0.42}>
+            <span className="relative inline-block">
+              <span className="editorial text-rust">Real Problems</span>
+              <motion.span
+                aria-hidden
+                initial={{ scaleX: 0 }}
+                animate={{ scaleX: 1 }}
+                transition={{ duration: 1.4, ease, delay: 1.5 }}
+                className="absolute -bottom-2 left-0 h-[3px] w-full origin-left bg-rust md:-bottom-3 md:h-[4px]"
+              />
+            </span>
             <span>.</span>
-          </span>
-        </motion.h1>
+          </RevealLine>
+        </h1>
 
         {/* Korean subhead — emphasized headline */}
         <motion.p
-          {...fadeUp(0.28)}
-          className="mt-10 max-w-3xl text-[26px] font-semibold leading-[1.25] tracking-[-0.02em] text-ink md:text-[36px] lg:text-[44px]"
+          {...fadeUp(0.7)}
+          className="mt-12 max-w-3xl text-[26px] font-semibold leading-[1.25] tracking-[-0.02em] text-ink md:text-[36px] lg:text-[44px]"
         >
           아이디어를 시장까지 밀어붙인 기록.
         </motion.p>
 
         {/* Smaller body paragraph */}
         <motion.div
-          {...fadeUp(0.34)}
+          {...fadeUp(0.78)}
           className="mt-6 max-w-2xl space-y-1.5 text-[14px] leading-relaxed text-ink-soft md:text-[15px]"
         >
           <p>문제를 발견하고, 구조를 설계하고, 팀을 움직이고, 고객을 만났습니다.</p>
@@ -85,14 +201,14 @@ export function Hero({
 
         {/* Emphasized method line */}
         <motion.p
-          {...fadeUp(0.36)}
+          {...fadeUp(0.86)}
           className="mt-12 max-w-3xl font-medium text-[24px] leading-[1.25] tracking-[-0.02em] text-ink md:text-[34px] lg:text-[42px]"
         >
           <span className="editorial text-rust">See, structure, build, sell, verify.</span>
         </motion.p>
 
         <motion.p
-          {...fadeUp(0.42)}
+          {...fadeUp(0.92)}
           className="mt-5 max-w-2xl text-[16px] leading-relaxed text-ink-soft md:text-[18px]"
         >
           A studio of one, working across civic data, care, startup
@@ -100,7 +216,7 @@ export function Hero({
         </motion.p>
 
         {/* CTAs */}
-        <motion.div {...fadeUp(0.5)} className="mt-14 flex flex-wrap items-center gap-3">
+        <motion.div {...fadeUp(1.0)} className="mt-14 flex flex-wrap items-center gap-3">
           <button
             onClick={onPrimary}
             className="group inline-flex items-center gap-2 rounded-full bg-ink px-5 py-3 text-[13px] font-medium text-ivory transition-transform hover:scale-[1.02]"
@@ -125,7 +241,7 @@ export function Hero({
 
         {/* STATS PANEL — emphasized */}
         <motion.div
-          {...fadeUp(0.6)}
+          {...fadeUp(1.1)}
           className="mt-20 overflow-hidden rounded-[32px] border border-ink/10 bg-white/40 backdrop-blur-sm"
         >
           <div className="grid grid-cols-3 divide-x divide-ink/10">
@@ -202,7 +318,7 @@ export function Hero({
 
         {/* Tag rail */}
         <motion.div
-          {...fadeUp(0.7)}
+          {...fadeUp(1.2)}
           className="mt-16 flex flex-wrap gap-1.5 border-t border-ink/10 pt-8"
         >
           {heroTags.map((tag) => (
@@ -213,6 +329,28 @@ export function Hero({
         </motion.div>
       </div>
     </section>
+  );
+}
+
+// Wraps a single block of text and reveals it with a clip-style slide.
+function RevealLine({
+  children,
+  delay = 0,
+}: {
+  children: React.ReactNode;
+  delay?: number;
+}) {
+  return (
+    <span className="relative block overflow-hidden pb-1">
+      <motion.span
+        className="block"
+        initial={{ y: '105%' }}
+        animate={{ y: '0%' }}
+        transition={{ duration: 1.0, ease, delay }}
+      >
+        {children}
+      </motion.span>
+    </span>
   );
 }
 
