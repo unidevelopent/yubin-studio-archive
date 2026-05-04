@@ -67,21 +67,14 @@ export function Footer() {
 
         <div className="divider-line" />
 
-        <div className="flex flex-col items-start justify-between gap-6 py-10 md:flex-row md:items-center">
-          <div className="flex items-center gap-3">
-            <span className="font-mono text-[10px] tracking-[0.2em] text-mute">
-              YK · YUBIN KIM
-            </span>
-            <span className="h-3 w-px bg-ink/15" />
-            <span className="text-[12px] text-mute">
-              © {new Date().getFullYear()} — Studio Archive
-            </span>
-          </div>
-          <div className="flex items-center gap-3 text-[12px] text-mute">
-            <span>Built with React · Tailwind · Framer Motion</span>
-            <span className="h-1 w-1 rounded-full bg-mute" />
-            <span>Deployed on Vercel</span>
-          </div>
+        <div className="flex items-center gap-3 py-10">
+          <span className="font-mono text-[10px] tracking-[0.2em] text-mute">
+            YK · YUBIN KIM
+          </span>
+          <span className="h-3 w-px bg-ink/15" />
+          <span className="text-[12px] text-mute">
+            © {new Date().getFullYear()} — Studio Archive
+          </span>
         </div>
       </div>
     </footer>

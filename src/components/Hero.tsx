@@ -90,25 +90,33 @@ export function Hero({
         {/* Headline */}
         <motion.h1
           {...fadeUp(0.18)}
-          className="display-1 mt-16 text-[15vw] leading-[0.86] md:mt-20 md:text-[140px] lg:text-[184px]"
+          className="display-1 mt-16 text-[14vw] leading-[0.86] md:mt-20 md:text-[128px] lg:text-[168px]"
         >
-          <span className="block">A working</span>
+          <span className="block">Systems from</span>
           <span className="block">
-            <span className="editorial pr-3 text-rust">archive</span>
-            <span>of proof.</span>
+            <span className="editorial text-rust">Real Problems</span>
+            <span>.</span>
           </span>
         </motion.h1>
 
+        {/* Korean subhead */}
+        <motion.p
+          {...fadeUp(0.28)}
+          className="mt-10 max-w-3xl text-[20px] font-medium leading-[1.45] tracking-[-0.01em] text-ink md:text-[26px] lg:text-[30px]"
+        >
+          실제 문제에서 출발해, 제품과 사업 구조를 설계합니다.
+        </motion.p>
+
         {/* Emphasized method line */}
         <motion.p
-          {...fadeUp(0.32)}
-          className="mt-14 max-w-3xl font-medium text-[26px] leading-[1.25] tracking-[-0.02em] text-ink md:text-[36px] lg:text-[44px]"
+          {...fadeUp(0.36)}
+          className="mt-12 max-w-3xl font-medium text-[24px] leading-[1.25] tracking-[-0.02em] text-ink md:text-[34px] lg:text-[42px]"
         >
           <span className="editorial text-rust">See, structure, build, sell, verify.</span>
         </motion.p>
 
         <motion.p
-          {...fadeUp(0.4)}
+          {...fadeUp(0.42)}
           className="mt-5 max-w-2xl text-[16px] leading-relaxed text-ink-soft md:text-[18px]"
         >
           A studio of one, working across civic data, care, startup
@@ -139,24 +147,79 @@ export function Hero({
           </button>
         </motion.div>
 
-        {/* Big stats panel */}
+        {/* STATS PANEL — emphasized */}
         <motion.div
           {...fadeUp(0.6)}
-          className="mt-20 overflow-hidden rounded-[28px] border border-ink/10 bg-white/40 backdrop-blur-sm"
+          className="mt-20 overflow-hidden rounded-[32px] border border-ink/10 bg-white/40 backdrop-blur-sm"
         >
           <div className="grid grid-cols-3 divide-x divide-ink/10">
             <Stat n="30+" l="Projects" />
             <Stat n="5" l="Awards" />
             <Stat n="6" l="Domains" />
           </div>
-          <div className="border-t border-ink/10 bg-ivory-soft/60 px-6 py-5 md:px-10">
-            <div className="flex flex-wrap items-baseline justify-between gap-3">
-              <span className="display-2 text-[18px] tracking-[-0.02em] text-ink md:text-[22px]">
-                CAIBSO · CPO · Founder · PM
-              </span>
-              <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-mute">
-                2020 — 2026 · 4 roles
-              </span>
+
+          {/* ROLES strip — dark, dramatic */}
+          <div className="relative overflow-hidden bg-ink text-ivory">
+            <div
+              className="pointer-events-none absolute -right-16 -top-16 h-[280px] w-[280px] rounded-full blur-3xl"
+              style={{
+                background:
+                  'radial-gradient(closest-side, rgba(105,56,239,0.30), transparent)',
+              }}
+            />
+            <div
+              className="pointer-events-none absolute -left-20 -bottom-20 h-[220px] w-[220px] rounded-full blur-3xl"
+              style={{
+                background:
+                  'radial-gradient(closest-side, rgba(105,56,239,0.18), transparent)',
+              }}
+            />
+            <div className="relative flex flex-col gap-8 px-6 py-10 md:px-12 md:py-14">
+              <div className="flex items-center justify-between gap-3">
+                <span className="font-mono text-[10px] uppercase tracking-[0.28em] text-ivory/55">
+                  Roles · 4
+                </span>
+                <span className="font-mono text-[10px] uppercase tracking-[0.28em] text-ivory/55">
+                  2020 — 2026
+                </span>
+              </div>
+
+              <div className="flex flex-col gap-3">
+                <div className="flex flex-wrap items-baseline gap-x-4 gap-y-2">
+                  <span className="display-1 text-[44px] leading-[0.95] text-ivory md:text-[72px] lg:text-[88px]">
+                    CAIBSO
+                  </span>
+                  <span className="editorial text-[18px] leading-[1.1] text-rust md:text-[26px] lg:text-[32px]">
+                    최고AI사업전략책임자
+                  </span>
+                </div>
+                <div className="flex flex-wrap items-baseline gap-x-3 text-ivory/85">
+                  <span className="display-2 text-[28px] leading-[1.0] md:text-[40px] lg:text-[48px]">
+                    CPO
+                  </span>
+                  <span className="display-1 text-[22px] leading-[0.9] text-ivory/40 md:text-[32px]">
+                    ·
+                  </span>
+                  <span className="display-2 text-[28px] leading-[1.0] md:text-[40px] lg:text-[48px]">
+                    CEO
+                  </span>
+                  <span className="display-1 text-[22px] leading-[0.9] text-ivory/40 md:text-[32px]">
+                    ·
+                  </span>
+                  <span className="display-2 text-[28px] leading-[1.0] md:text-[40px] lg:text-[48px]">
+                    PM
+                  </span>
+                </div>
+              </div>
+
+              <div className="flex flex-wrap items-baseline justify-between gap-2 border-t border-ivory/10 pt-6">
+                <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-ivory/55">
+                  Founder · Operator · Builder
+                </span>
+                <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-ivory/55">
+                  Seoul, KR
+                </span>
+              </div>
             </div>
           </div>
         </motion.div>
@@ -183,7 +246,7 @@ function Stat({ n, l }: { n: string; l: string }) {
       <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-mute">
         {l}
       </span>
-      <span className="display-1 text-[64px] leading-[0.9] text-ink md:text-[96px] lg:text-[120px]">
+      <span className="display-1 text-[60px] leading-[0.9] text-ink md:text-[88px] lg:text-[112px]">
         {n}
       </span>
     </div>

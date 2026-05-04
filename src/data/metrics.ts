@@ -11,19 +11,14 @@ export const metrics: Metric[] = [
     detail: '전국 314개 창업보육기관 중 255개 기관 도입을 이끈 대규모 B2B·공공기관 영업 성과',
   },
   {
-    value: '81.2%',
-    label: '기관 도입 전환율',
-    detail: '대규모 B2B / 공공기관 영업 성과',
-  },
-  {
-    value: '1.2억 원',
-    label: '공공·창업 생태계 계약 성과',
-    detail: '서울테크노파크, KAIA, 서울창조경제혁신센터, KOBIA 등 4건 계약',
-  },
-  {
     value: '51.5%',
     label: '온톨로지 AI 사업 매출 성장',
-    detail: 'B2B AI Agent 사업, 2024년 하반기 6,600만 원 → 2025년 상반기 1억 원',
+    detail: '반기 단위 B2B AI Agent 사업 매출 성장',
+  },
+  {
+    value: '5억 원+',
+    label: '정부지원사업·입찰·영업 계약 누적',
+    detail: '정부지원사업 선정 및 입찰 수주, 영업 및 계약 다수 (단독 리드)',
   },
   {
     value: '18명',
@@ -38,7 +33,7 @@ export const metrics: Metric[] = [
   {
     value: 'WAU 3,000+',
     label: 'Care Tech 플랫폼 주간 활성 사용자',
-    detail: '서비스 론칭 2개월 후 도달',
+    detail: '서비스 론칭 2주 후 도달',
   },
   {
     value: '17만 건',

@@ -15,11 +15,11 @@ export function FeaturedWork({ onOpen }: { onOpen: (p: Project) => void }) {
     <section id="work" className="relative py-32 md:py-40">
       <div className="mx-auto max-w-page px-6 md:px-10">
         <div className="mb-16 md:mb-24">
-          <span className="label-eyebrow">Selected Work</span>
+          <span className="label-eyebrow">Featured Work</span>
           <h2 className="display-2 mt-6 text-4xl text-ink md:text-6xl">
-            Six cases,
+            Six built,
             <br />
-            <span className="editorial text-rust">in the world</span>.
+            <span className="editorial text-rust">six proven</span>.
           </h2>
         </div>
 
@@ -83,8 +83,8 @@ function CaseRow({
           {img ? (
             <div className="relative my-8 w-full">
               <img
-                src={img.src}
-                alt={img.alt}
+                src={img.cover.src}
+                alt={img.cover.alt}
                 loading="lazy"
                 className="mx-auto h-auto max-h-[420px] w-auto max-w-full rounded-xl object-contain shadow-[0_30px_60px_-30px_rgba(19,18,17,0.30)] transition-transform duration-700 group-hover:scale-[1.02]"
               />

@@ -79,8 +79,8 @@ export function ProjectModal({
               {projectImages[project.id] && (
                 <div className="mt-8 flex items-center justify-center overflow-hidden rounded-2xl border border-ink/10 bg-ivory-soft p-6 md:p-8">
                   <img
-                    src={projectImages[project.id]!.src}
-                    alt={projectImages[project.id]!.alt}
+                    src={projectImages[project.id]!.cover.src}
+                    alt={projectImages[project.id]!.cover.alt}
                     className="mx-auto h-auto max-h-[420px] w-auto max-w-full object-contain"
                     loading="lazy"
                   />
@@ -138,6 +138,27 @@ export function ProjectModal({
                   </div>
                 </Section>
               )}
+
+              {projectImages[project.id]?.gallery &&
+                projectImages[project.id]!.gallery!.length > 0 && (
+                  <Section label="Gallery">
+                    <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+                      {projectImages[project.id]!.gallery!.map((g, i) => (
+                        <div
+                          key={i}
+                          className="flex items-center justify-center overflow-hidden rounded-xl border border-ink/10 bg-ivory-soft p-4"
+                        >
+                          <img
+                            src={g.src}
+                            alt={g.alt}
+                            loading="lazy"
+                            className="mx-auto h-auto max-h-[280px] w-auto max-w-full object-contain"
+                          />
+                        </div>
+                      ))}
+                    </div>
+                  </Section>
+                )}
 
               <Section label="Tags">
                 <div className="flex flex-wrap gap-1.5">
