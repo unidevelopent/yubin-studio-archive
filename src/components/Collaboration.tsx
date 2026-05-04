@@ -76,8 +76,7 @@ export function Collaboration() {
                 that <span className="editorial text-rust">proves itself</span>.
               </h2>
               <p className="mt-8 max-w-md text-[15px] leading-relaxed text-ivory/70">
-                관심 있는 주제는 명확합니다. 필요한 것은 더 많은 말이 아니라 함께
-                실험할 사람들입니다.
+                관심 있는 주제는 명확합니다. 필요한 것은 함께 실험할 사람들입니다.
               </p>
 
               <div className="mt-10 flex flex-wrap gap-1.5">
