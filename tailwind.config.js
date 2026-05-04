@@ -4,18 +4,20 @@ export default {
   theme: {
     extend: {
       colors: {
-        ivory: '#F1ECE2',
-        'ivory-soft': '#E8E1D2',
-        'ivory-deep': '#DDD3BE',
+        ivory: '#FFFFFF',
+        'ivory-soft': '#F5F5F4',
+        'ivory-deep': '#E8E8E6',
         ink: '#131211',
         'ink-soft': '#2A2722',
-        mute: '#6B675F',
-        rust: '#C0492B',
-        'rust-soft': '#EBD9CF',
+        mute: '#737272',
+        // Accent token kept under the `rust` name for component compatibility;
+        // value swapped to a deep violet.
+        rust: '#6938EF',
+        'rust-soft': '#EDE7FB',
         moss: '#4A5D3A',
         // legacy tokens kept for components copied from v1
-        bg: '#F1ECE2',
-        'bg-soft': '#E8E1D2',
+        bg: '#FFFFFF',
+        'bg-soft': '#F7F7F6',
         surface: 'rgba(19,18,17,0.04)',
         'surface-hover': 'rgba(19,18,17,0.08)',
         text: {
@@ -24,8 +26,8 @@ export default {
           muted: '#8A8780',
         },
         border: 'rgba(19,18,17,0.10)',
-        accent: '#C0492B',
-        'accent-soft': 'rgba(192,73,43,0.12)',
+        accent: '#6938EF',
+        'accent-soft': 'rgba(105,56,239,0.12)',
         proof: '#4A5D3A',
       },
       fontFamily: {

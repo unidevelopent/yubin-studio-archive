@@ -87,51 +87,36 @@ export function Hero({
           </span>
         </motion.div>
 
-        {/* Full-width headline */}
+        {/* Headline */}
         <motion.h1
           {...fadeUp(0.18)}
-          className="display-1 mt-16 text-[15vw] leading-[0.86] md:mt-20 md:text-[140px] lg:text-[180px]"
+          className="display-1 mt-16 text-[15vw] leading-[0.86] md:mt-20 md:text-[140px] lg:text-[184px]"
         >
           <span className="block">A working</span>
           <span className="block">
             <span className="editorial pr-3 text-rust">archive</span>
-            <span>of proof —</span>
-          </span>
-          <span className="block">
-            not<span className="editorial px-3">promises</span>.
+            <span>of proof.</span>
           </span>
         </motion.h1>
 
-        <div className="mt-14 grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-10">
-          <motion.div {...fadeUp(0.32)} className="lg:col-span-7">
-            <p className="text-[17px] leading-relaxed text-ink-soft md:text-[19px]">
-              문제의 신호를 읽고, 제품과 사업으로 검증한 작업들. 정책 데이터, 정치
-              참여, 발달장애 교육, 창업 생태계, 온톨로지 AI, Agentic Commerce까지 —
-              관심사는 달라졌지만 작업 방식은 같았습니다.
-            </p>
-            <p className="mt-5 text-[14px] leading-relaxed text-mute">
-              <span className="editorial text-ink">See, structure, build, sell, verify.</span>{' '}
-              A studio of one, working across civic data, care, startup
-              infrastructure, and applied AI.
-            </p>
-          </motion.div>
+        {/* Emphasized method line */}
+        <motion.p
+          {...fadeUp(0.32)}
+          className="mt-14 max-w-3xl font-medium text-[26px] leading-[1.25] tracking-[-0.02em] text-ink md:text-[36px] lg:text-[44px]"
+        >
+          <span className="editorial text-rust">See, structure, build, sell, verify.</span>
+        </motion.p>
 
-          <motion.aside
-            {...fadeUp(0.42)}
-            className="flex flex-col justify-end gap-3 border-t border-ink/10 pt-6 lg:col-span-5 lg:items-end lg:border-t-0 lg:pt-0"
-          >
-            <div className="flex items-baseline gap-6 lg:justify-end">
-              <Stat n="30+" l="Projects" />
-              <Stat n="5" l="Awards" />
-              <Stat n="6" l="Domains" />
-            </div>
-            <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-mute lg:text-right">
-              CAIBSO · CPO · Founder · PM
-            </p>
-          </motion.aside>
-        </div>
+        <motion.p
+          {...fadeUp(0.4)}
+          className="mt-5 max-w-2xl text-[16px] leading-relaxed text-ink-soft md:text-[18px]"
+        >
+          A studio of one, working across civic data, care, startup
+          infrastructure, and applied AI.
+        </motion.p>
 
-        <motion.div {...fadeUp(0.52)} className="mt-14 flex flex-wrap items-center gap-3">
+        {/* CTAs */}
+        <motion.div {...fadeUp(0.5)} className="mt-14 flex flex-wrap items-center gap-3">
           <button
             onClick={onPrimary}
             className="group inline-flex items-center gap-2 rounded-full bg-ink px-5 py-3 text-[13px] font-medium text-ivory transition-transform hover:scale-[1.02]"
@@ -154,9 +139,32 @@ export function Hero({
           </button>
         </motion.div>
 
+        {/* Big stats panel */}
         <motion.div
-          {...fadeUp(0.62)}
-          className="mt-20 flex flex-wrap gap-1.5 border-t border-ink/10 pt-8"
+          {...fadeUp(0.6)}
+          className="mt-20 overflow-hidden rounded-[28px] border border-ink/10 bg-white/40 backdrop-blur-sm"
+        >
+          <div className="grid grid-cols-3 divide-x divide-ink/10">
+            <Stat n="30+" l="Projects" />
+            <Stat n="5" l="Awards" />
+            <Stat n="6" l="Domains" />
+          </div>
+          <div className="border-t border-ink/10 bg-ivory-soft/60 px-6 py-5 md:px-10">
+            <div className="flex flex-wrap items-baseline justify-between gap-3">
+              <span className="display-2 text-[18px] tracking-[-0.02em] text-ink md:text-[22px]">
+                CAIBSO · CPO · Founder · PM
+              </span>
+              <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-mute">
+                2020 — 2026 · 4 roles
+              </span>
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Tag rail */}
+        <motion.div
+          {...fadeUp(0.7)}
+          className="mt-16 flex flex-wrap gap-1.5 border-t border-ink/10 pt-8"
         >
           {heroTags.map((tag) => (
             <span key={tag} className="pill">
@@ -171,10 +179,12 @@ export function Hero({
 
 function Stat({ n, l }: { n: string; l: string }) {
   return (
-    <div className="flex items-baseline gap-2">
-      <span className="display-2 text-[24px] text-ink">{n}</span>
-      <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-mute">
+    <div className="flex flex-col items-start gap-3 px-6 py-8 md:px-10 md:py-10">
+      <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-mute">
         {l}
+      </span>
+      <span className="display-1 text-[64px] leading-[0.9] text-ink md:text-[96px] lg:text-[120px]">
+        {n}
       </span>
     </div>
   );

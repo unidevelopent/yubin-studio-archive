@@ -26,11 +26,6 @@ export const metrics: Metric[] = [
     detail: 'B2B AI Agent 사업, 2024년 하반기 6,600만 원 → 2025년 상반기 1억 원',
   },
   {
-    value: '8천만 원',
-    label: '영어교육로봇 프로젝트',
-    detail: '휴머노이드 로봇 탑재 교육용 AI Agent 기획·계약',
-  },
-  {
     value: '18명',
     label: '크로스펑셔널 팀 운영',
     detail: 'AI연구·기획·마케팅·영업·제품개발 전 사이클 운영',

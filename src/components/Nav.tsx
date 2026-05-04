@@ -56,17 +56,11 @@ export function Nav() {
       <div className="mx-auto flex h-16 max-w-page items-center justify-between px-6 md:px-10">
         <button
           onClick={() => handleClick('home')}
-          className="group flex items-center gap-3 text-[13px] tracking-tight"
+          className="group flex flex-col items-start text-[13px] leading-tight tracking-tight"
         >
-          <span className="relative flex h-7 w-7 items-center justify-center rounded-full border border-ink/20 bg-ivory">
-            <span className="font-mono text-[10px] font-medium text-ink">YK</span>
-            <span className="absolute -right-0.5 -top-0.5 h-1.5 w-1.5 rounded-full bg-rust" />
-          </span>
-          <span className="hidden flex-col items-start leading-tight md:flex">
-            <span className="text-ink">Yubin Kim</span>
-            <span className="font-mono text-[9px] uppercase tracking-[0.22em] text-mute">
-              Studio Archive
-            </span>
+          <span className="text-ink">Yubin Kim</span>
+          <span className="font-mono text-[9px] uppercase tracking-[0.22em] text-mute">
+            Studio Archive
           </span>
         </button>
 

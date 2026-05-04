@@ -13,16 +13,6 @@ const links = [
     value: 'in/yubin-kim',
     href: 'https://www.linkedin.com/in/%EC%9C%A0%EB%B9%88-%EA%B9%80-8a7317268/',
   },
-  {
-    label: 'Instagram',
-    value: '@uni_development',
-    href: 'https://www.instagram.com/uni_development/',
-  },
-  {
-    label: 'Portfolio',
-    value: 'surfit · 커리어프로필',
-    href: '#',
-  },
 ];
 
 export function Footer() {
@@ -46,8 +36,7 @@ export function Footer() {
               next <span className="editorial text-rust">proof</span>.
             </p>
             <p className="mt-8 max-w-md text-[14px] leading-relaxed text-ink-soft">
-              협업 제안, 인터뷰, 강연, 자문, 채용 문의는 메일로 보내주세요. 보통 2~3
-              영업일 이내에 답신드립니다.
+              협업 제안, 인터뷰, 강연, 자문, 채용 문의는 메일로 보내주세요.
             </p>
           </div>
 

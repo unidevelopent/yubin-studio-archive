@@ -8,29 +8,40 @@ export interface ProjectImage {
 
 export const projectImages: Record<string, ProjectImage> = {
   linkbrain: {
-    src: '/products/linkbrain/01-landing.png',
+    src: '/products/linkbrain/thumbnail.png',
     alt: 'LinkBrain — ontology knowledge platform',
-  },
-  kivel: {
-    src: '/products/kivel/01-thumb.png',
-    alt: 'Kivel — developmental care platform',
-  },
-  'knowhow-kpi': {
-    src: '/products/knowhow/01-cover.png',
-    alt: 'KNOWHOW — startup support agency SaaS',
   },
   'english-robot': {
     src: '/products/elo/03-cover.png',
     alt: 'ELO — robot-paired English education',
   },
+  kivel: {
+    src: '/products/kivel/01-thumb.png',
+    alt: 'Kivel — developmental care platform',
+  },
+  'doctor-kong': {
+    src: '/products/doctorkong/02-flow.jpg',
+    alt: 'Doctor Kong — early childhood development app',
+  },
+  odyssey: {
+    src: '/products/odyssey/01-cover.png',
+    alt: 'Odyssey — long-term goal compass',
+  },
+  thinkle: {
+    // Placeholder. Drop the real photo to /public/products/thinkle/cover.png and change `.svg` → `.png`.
+    src: '/products/thinkle/cover.svg',
+    alt: 'Thinkle — character-room civic SNS',
+  },
 };
 
-// Featured projects (with images), in display order — most attractive first.
+// Featured projects (with images), in display order.
 export const featuredProjectIds = [
   'linkbrain',
-  'kivel',
-  'knowhow-kpi',
   'english-robot',
+  'kivel',
+  'doctor-kong',
+  'odyssey',
+  'thinkle',
 ] as const;
 
 export const getCover = (id: string): string | undefined =>

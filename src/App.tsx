@@ -9,7 +9,6 @@ import { Pattern } from './components/Pattern';
 import { ChapterSection } from './components/ChapterSection';
 import { ProjectLibrary } from './components/ProjectLibrary';
 import { Timeline } from './components/Timeline';
-import { Experience } from './components/Experience';
 import { Awards } from './components/Awards';
 import { Collaboration } from './components/Collaboration';
 import { Footer } from './components/Footer';
@@ -57,7 +56,6 @@ export default function App() {
           onFilterChange={setLibraryFilter}
         />
         <Timeline />
-        <Experience />
         <Awards />
         <Collaboration />
         <Footer />

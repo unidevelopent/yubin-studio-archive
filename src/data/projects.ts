@@ -339,7 +339,6 @@ export const projects: Project[] = [
       '공공 교육기관 및 로봇 교육 시장 대상 제안',
       '직접 영업 및 계약 성사',
     ],
-    proof: ['총 8천만 원 규모 프로젝트'],
     tags: ['Robot', 'Education', 'AI Agent'],
   },
   {

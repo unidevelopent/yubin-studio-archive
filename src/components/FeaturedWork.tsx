@@ -14,19 +14,13 @@ export function FeaturedWork({ onOpen }: { onOpen: (p: Project) => void }) {
   return (
     <section id="work" className="relative py-32 md:py-40">
       <div className="mx-auto max-w-page px-6 md:px-10">
-        <div className="mb-16 flex flex-col items-start justify-between gap-6 md:mb-24 md:flex-row md:items-end">
-          <div>
-            <span className="label-eyebrow">Selected Cases</span>
-            <h2 className="display-2 mt-6 text-4xl text-ink md:text-6xl">
-              Four cases,
-              <br />
-              <span className="editorial text-rust">measured</span> in the field.
-            </h2>
-          </div>
-          <p className="max-w-sm text-[14px] leading-relaxed text-ink-soft">
-            가장 매력적이라고 생각하는 네 개의 작업. 각각 진짜 사용자, 진짜 매출, 진짜
-            계약을 만들었습니다.
-          </p>
+        <div className="mb-16 md:mb-24">
+          <span className="label-eyebrow">Selected Work</span>
+          <h2 className="display-2 mt-6 text-4xl text-ink md:text-6xl">
+            Six cases,
+            <br />
+            <span className="editorial text-rust">in the world</span>.
+          </h2>
         </div>
 
         <div className="space-y-6 md:space-y-8">
@@ -35,6 +29,7 @@ export function FeaturedWork({ onOpen }: { onOpen: (p: Project) => void }) {
               key={p.id}
               project={p}
               index={i}
+              total={items.length}
               onOpen={() => onOpen(p)}
             />
           ))}
@@ -47,10 +42,12 @@ export function FeaturedWork({ onOpen }: { onOpen: (p: Project) => void }) {
 function CaseRow({
   project,
   index,
+  total,
   onOpen,
 }: {
   project: Project;
   index: number;
+  total: number;
   onOpen: () => void;
 }) {
   const isReversed = index % 2 === 1;
@@ -80,7 +77,7 @@ function CaseRow({
             {chapter.name}
           </div>
           <span className="absolute right-6 top-6 font-mono text-[10px] uppercase tracking-[0.22em] text-mute">
-            {String(index + 1).padStart(2, '0')} / 04
+            {String(index + 1).padStart(2, '0')} / {String(total).padStart(2, '0')}
           </span>
 
           {img ? (
