@@ -1,5 +1,4 @@
 import { motion } from 'framer-motion';
-import { Marquee } from './Marquee';
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
@@ -12,20 +11,6 @@ const heroTags = [
   'Human-State AI',
   'Agentic Commerce',
   'Future Education',
-];
-
-const marqueeProjects = [
-  'Kivel',
-  'LinkBrain',
-  'KNOWHOW',
-  'Doctor Kong',
-  'ELO',
-  'FactoFlow',
-  'Hellu',
-  'Odyssey',
-  'ZEST',
-  'SRC',
-  'UX Insights',
 ];
 
 const fadeUp = (delay = 0) => ({
@@ -49,25 +34,6 @@ export function Hero({
       className="relative isolate overflow-hidden pt-28 md:pt-32"
     >
       <div className="grain" />
-
-      {/* Top marquee */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1.2, delay: 0.4 }}
-        className="border-y border-ink/10 bg-ivory/40 py-3"
-      >
-        <Marquee speed={48}>
-          {marqueeProjects.map((p, i) => (
-            <span key={`${p}-${i}`} className="flex items-center gap-8 px-4">
-              <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-ink-soft">
-                {String(i + 1).padStart(2, '0')} — {p}
-              </span>
-              <span className="h-1 w-1 rounded-full bg-rust/60" />
-            </span>
-          ))}
-        </Marquee>
-      </motion.div>
 
       <div className="relative mx-auto max-w-page px-6 md:px-10">
         {/* Top meta bar */}
