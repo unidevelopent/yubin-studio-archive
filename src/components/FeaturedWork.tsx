@@ -1,5 +1,4 @@
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { useRef } from 'react';
+import { motion } from 'framer-motion';
 import { featuredProjectIds, projectImages } from '../data/images';
 import { projects } from '../data/projects';
 import type { Project } from '../data/projects';
@@ -15,24 +14,24 @@ export function FeaturedWork({ onOpen }: { onOpen: (p: Project) => void }) {
   return (
     <section id="work" className="relative py-32 md:py-40">
       <div className="mx-auto max-w-page px-6 md:px-10">
-        <div className="mb-16 flex flex-col items-start justify-between gap-6 md:flex-row md:items-end md:mb-24">
+        <div className="mb-16 flex flex-col items-start justify-between gap-6 md:mb-24 md:flex-row md:items-end">
           <div>
-            <span className="label-eyebrow">Selected Work</span>
+            <span className="label-eyebrow">Selected Cases</span>
             <h2 className="display-2 mt-6 text-4xl text-ink md:text-6xl">
-              Things made,
+              Four cases,
               <br />
               <span className="editorial text-rust">measured</span> in the field.
             </h2>
           </div>
           <p className="max-w-sm text-[14px] leading-relaxed text-ink-soft">
-            8개의 대표 프로젝트. 각 프로젝트는 실제로 사용된 화면, 실제로 만난 고객,
-            그리고 실제로 측정된 결과를 담고 있습니다.
+            가장 매력적이라고 생각하는 네 개의 작업. 각각 진짜 사용자, 진짜 매출, 진짜
+            계약을 만들었습니다.
           </p>
         </div>
 
-        <div className="space-y-32 md:space-y-40">
+        <div className="space-y-6 md:space-y-8">
           {items.map((p, i) => (
-            <FeaturedRow
+            <CaseRow
               key={p.id}
               project={p}
               index={i}
@@ -45,7 +44,7 @@ export function FeaturedWork({ onOpen }: { onOpen: (p: Project) => void }) {
   );
 }
 
-function FeaturedRow({
+function CaseRow({
   project,
   index,
   onOpen,
@@ -54,116 +53,101 @@ function FeaturedRow({
   index: number;
   onOpen: () => void;
 }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ['start end', 'end start'],
-  });
-  const y = useTransform(scrollYProgress, [0, 1], [40, -40]);
-  const scale = useTransform(scrollYProgress, [0, 0.5, 1], [1.04, 1, 1.04]);
-
   const isReversed = index % 2 === 1;
   const img = projectImages[project.id];
-  if (!img) return null;
   const chapter = getChapter(project.chapter);
 
   return (
-    <motion.article
-      ref={ref}
-      initial={{ opacity: 0, y: 40 }}
+    <motion.button
+      onClick={onOpen}
+      data-cursor="hover"
+      initial={{ opacity: 0, y: 32 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-100px' }}
-      transition={{ duration: 0.9, ease }}
-      className="grid grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-12"
+      viewport={{ once: true, margin: '-80px' }}
+      transition={{ duration: 0.8, ease }}
+      whileHover={{ y: -4 }}
+      className="group block w-full overflow-hidden rounded-3xl border border-ink/10 bg-white/40 text-left backdrop-blur-sm transition-all duration-500 hover:border-ink/25 hover:bg-white/70 hover:shadow-[0_30px_70px_-32px_rgba(19,18,17,0.22)]"
     >
-      {/* Image */}
       <div
-        className={`relative lg:col-span-8 ${isReversed ? 'lg:order-2' : ''}`}
-      >
-        <button
-          onClick={onOpen}
-          data-cursor="hover"
-          className="group relative block w-full overflow-hidden rounded-3xl border border-ink/10 bg-ink/5 text-left"
-        >
-          <motion.div style={{ y, scale }} className="relative aspect-[16/10]">
-            <img
-              src={img.src}
-              alt={img.alt}
-              loading="lazy"
-              className="absolute inset-0 h-full w-full object-cover"
-            />
-          </motion.div>
-
-          {/* Top label strip */}
-          <div className="absolute inset-x-6 top-6 flex items-center justify-between">
-            <span className="inline-flex items-center gap-2 rounded-full border border-ivory/40 bg-ink/45 px-3 py-1 text-[10px] font-mono uppercase tracking-[0.2em] text-ivory backdrop-blur-md">
-              <span className="h-1 w-1 rounded-full bg-rust" />
-              {chapter.name}
-            </span>
-            <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-ivory/85 mix-blend-difference">
-              {String(index + 1).padStart(2, '0')} / {String(8).padStart(2, '0')}
-            </span>
-          </div>
-
-          {/* Bottom overlay */}
-          <div className="absolute inset-x-6 bottom-6 flex items-end justify-between">
-            <div className="rounded-2xl bg-ink/70 px-4 py-2 backdrop-blur-md">
-              <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-ivory/70">
-                {project.period}
-              </p>
-              <p className="mt-0.5 text-[12px] text-ivory">{project.role}</p>
-            </div>
-            <span className="flex h-12 w-12 items-center justify-center rounded-full bg-ivory text-ink transition-transform group-hover:scale-110 group-hover:rotate-12">
-              ↗
-            </span>
-          </div>
-        </button>
-      </div>
-
-      {/* Text */}
-      <div
-        className={`flex flex-col justify-center lg:col-span-4 ${
-          isReversed ? 'lg:order-1 lg:items-end lg:text-right' : ''
+        className={`grid grid-cols-1 gap-0 lg:grid-cols-12 ${
+          isReversed ? 'lg:[&>*:first-child]:order-2' : ''
         }`}
       >
-        <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-rust">
-          0{index + 1}
-        </span>
-        <h3 className="display-2 mt-3 text-[34px] leading-[1.0] text-ink md:text-[44px]">
-          {project.title}
-        </h3>
-        <p className="mt-5 max-w-md text-[14px] leading-relaxed text-ink-soft">
-          {project.summary}
-        </p>
-
-        {project.proof?.[0] && (
-          <div
-            className={`mt-6 inline-flex items-start gap-3 rounded-2xl border border-moss/20 bg-moss/[0.05] px-4 py-3 ${
-              isReversed ? 'lg:self-end lg:flex-row-reverse lg:text-right' : ''
-            }`}
-          >
-            <span className="mt-1 h-2 w-2 shrink-0 rounded-full bg-moss" />
-            <span className="text-[12px] leading-relaxed text-moss">
-              {project.proof[0]}
-            </span>
+        {/* Image panel */}
+        <div className="relative flex items-center justify-center bg-ivory-soft p-6 md:p-10 lg:col-span-7">
+          <div className="absolute left-6 top-6 inline-flex items-center gap-2 rounded-full border border-ink/10 bg-ivory/80 px-3 py-1 text-[10px] font-mono uppercase tracking-[0.22em] text-ink-soft backdrop-blur-md">
+            <span className="h-1 w-1 rounded-full bg-rust" />
+            {chapter.name}
           </div>
-        )}
+          <span className="absolute right-6 top-6 font-mono text-[10px] uppercase tracking-[0.22em] text-mute">
+            {String(index + 1).padStart(2, '0')} / 04
+          </span>
 
-        <div className={`mt-6 flex flex-wrap gap-1.5 ${isReversed ? 'lg:justify-end' : ''}`}>
-          {project.tags.slice(0, 4).map((t) => (
-            <span key={t} className="pill">
-              {t}
-            </span>
-          ))}
+          {img ? (
+            <div className="relative my-8 w-full">
+              <img
+                src={img.src}
+                alt={img.alt}
+                loading="lazy"
+                className="mx-auto h-auto max-h-[420px] w-auto max-w-full rounded-xl object-contain shadow-[0_30px_60px_-30px_rgba(19,18,17,0.30)] transition-transform duration-700 group-hover:scale-[1.02]"
+              />
+            </div>
+          ) : (
+            <div className="aspect-[16/10] w-full" />
+          )}
+
+          <span className="absolute bottom-6 right-6 inline-flex h-10 w-10 items-center justify-center rounded-full border border-ink/15 bg-ivory text-ink transition-transform group-hover:rotate-12 group-hover:bg-ink group-hover:text-ivory">
+            ↗
+          </span>
         </div>
 
-        <button
-          onClick={onOpen}
-          className="ink-link mt-8 inline-flex items-center gap-2 self-start text-[13px] text-ink"
-        >
-          {isReversed ? '↗' : null} View case <span>{isReversed ? null : '↗'}</span>
-        </button>
+        {/* Text panel */}
+        <div className="flex flex-col justify-center gap-5 p-8 md:p-12 lg:col-span-5">
+          <div className="flex items-baseline gap-3">
+            <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-rust">
+              0{index + 1}
+            </span>
+            <span className="h-px w-8 bg-rust/40" />
+            <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-mute">
+              {project.period}
+            </span>
+          </div>
+
+          <h3 className="display-2 text-[34px] leading-[0.95] text-ink md:text-[44px]">
+            {project.title}
+          </h3>
+
+          <p className="text-[12px] uppercase tracking-[0.12em] text-mute">
+            {project.role}
+          </p>
+
+          <p className="text-[14px] leading-relaxed text-ink-soft">
+            {project.summary}
+          </p>
+
+          {project.proof?.[0] && (
+            <div className="inline-flex items-start gap-3 rounded-2xl border border-moss/20 bg-moss/[0.06] px-4 py-3">
+              <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-moss" />
+              <span className="text-[12px] leading-relaxed text-moss">
+                {project.proof[0]}
+              </span>
+            </div>
+          )}
+
+          <div className="mt-2 flex flex-wrap gap-1.5">
+            {project.tags.slice(0, 4).map((t) => (
+              <span key={t} className="pill">
+                {t}
+              </span>
+            ))}
+          </div>
+
+          <span className="mt-2 inline-flex items-center gap-2 text-[13px] text-ink">
+            <span className="ink-link">Open case</span>
+            <span className="transition-transform group-hover:translate-x-0.5">→</span>
+          </span>
+        </div>
       </div>
-    </motion.article>
+    </motion.button>
   );
 }

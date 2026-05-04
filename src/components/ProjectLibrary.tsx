@@ -4,7 +4,6 @@ import { chapters } from '../data/chapters';
 import type { ChapterId } from '../data/chapters';
 import { projects } from '../data/projects';
 import type { Project } from '../data/projects';
-import { projectImages } from '../data/images';
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
@@ -12,10 +11,13 @@ type Filter = 'all' | ChapterId;
 
 export function ProjectLibrary({
   onOpen,
+  filter,
+  onFilterChange,
 }: {
   onOpen: (p: Project) => void;
+  filter: Filter;
+  onFilterChange: (f: Filter) => void;
 }) {
-  const [filter, setFilter] = useState<Filter>('all');
   const [query, setQuery] = useState('');
 
   const filtered = useMemo(() => {
@@ -36,9 +38,9 @@ export function ProjectLibrary({
           <div>
             <span className="label-eyebrow">Project Library</span>
             <h2 className="display-2 mt-6 text-4xl text-ink md:text-6xl">
-              All projects,
+              Every project,
               <br />
-              one <span className="editorial text-rust">filterable</span> archive.
+              <span className="editorial text-rust">filtered</span> to find.
             </h2>
           </div>
           <p className="max-w-sm text-[14px] leading-relaxed text-ink-soft">
@@ -49,14 +51,14 @@ export function ProjectLibrary({
 
         <div className="mt-12 flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
           <div className="-mx-2 flex flex-1 flex-wrap items-center gap-1 px-2">
-            <FilterChip active={filter === 'all'} onClick={() => setFilter('all')}>
+            <FilterChip active={filter === 'all'} onClick={() => onFilterChange('all')}>
               All
             </FilterChip>
             {chapters.map((c) => (
               <FilterChip
                 key={c.id}
                 active={filter === c.id}
-                onClick={() => setFilter(c.id)}
+                onClick={() => onFilterChange(c.id)}
               >
                 {c.name}
               </FilterChip>
@@ -84,73 +86,62 @@ export function ProjectLibrary({
           layout
           className="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3"
         >
-          {filtered.map((p, i) => {
-            const cover = projectImages[p.id];
-            return (
-              <motion.button
-                layout
-                key={p.id}
-                onClick={() => onOpen(p)}
-                initial={{ opacity: 0, y: 16 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-50px' }}
-                transition={{ duration: 0.5, ease, delay: (i % 6) * 0.04 }}
-                whileHover={{ y: -4 }}
-                className="group surface-card relative overflow-hidden rounded-2xl text-left"
-              >
-                {cover ? (
-                  <div className="relative aspect-[16/9] w-full overflow-hidden bg-ink/5">
-                    <img
-                      src={cover.src}
-                      alt={cover.alt}
-                      loading="lazy"
-                      className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
-                    />
-                  </div>
-                ) : (
-                  <div className="relative flex aspect-[16/9] w-full items-center justify-center overflow-hidden bg-gradient-to-br from-ivory-soft via-ivory to-ivory-deep">
-                    <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-mute">
-                      {chapters.find((c) => c.id === p.chapter)?.name}
-                    </span>
-                  </div>
+          {filtered.map((p, i) => (
+            <motion.button
+              layout
+              key={p.id}
+              onClick={() => onOpen(p)}
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-50px' }}
+              transition={{ duration: 0.5, ease, delay: (i % 6) * 0.04 }}
+              whileHover={{ y: -3 }}
+              className="surface-card group relative flex h-full flex-col items-start overflow-hidden rounded-2xl p-6 text-left"
+            >
+              <div className="flex w-full items-center justify-between">
+                <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-mute">
+                  {chapters.find((c) => c.id === p.chapter)?.name}
+                </span>
+                {p.isConfidential && (
+                  <span className="inline-flex items-center gap-1 rounded-full border border-ink/15 bg-white/40 px-2 py-0.5 text-[10px] text-mute">
+                    <span className="h-1 w-1 rounded-full bg-mute" />
+                    Withheld
+                  </span>
                 )}
-                <div className="p-6">
-                  <div className="flex items-center justify-between">
-                    <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-mute">
-                      {chapters.find((c) => c.id === p.chapter)?.name}
-                    </span>
-                    {p.isConfidential && (
-                      <span className="inline-flex items-center gap-1 rounded-full border border-ink/15 bg-white/40 px-2 py-0.5 text-[10px] text-mute">
-                        <span className="h-1 w-1 rounded-full bg-mute" />
-                        Withheld
-                      </span>
-                    )}
-                  </div>
-                  <h3 className="mt-4 text-[17px] font-medium leading-snug text-ink">
-                    {p.title}
-                  </h3>
-                  <p className="mt-2 text-[12px] text-mute">{p.period}</p>
-                  <p className="mt-4 line-clamp-3 text-[13px] leading-relaxed text-ink-soft">
-                    {p.summary}
-                  </p>
-                  <div className="mt-5 flex flex-wrap gap-1">
-                    {p.tags.slice(0, 3).map((t) => (
-                      <span
-                        key={t}
-                        className="rounded-md bg-ink/[0.04] px-1.5 py-0.5 text-[10px] text-ink-soft"
-                      >
-                        {t}
-                      </span>
-                    ))}
-                  </div>
-                  <div className="mt-5 inline-flex items-center gap-1 text-[12px] text-mute transition-colors group-hover:text-ink">
-                    Open
-                    <span className="transition-transform group-hover:translate-x-0.5">→</span>
-                  </div>
-                </div>
-              </motion.button>
-            );
-          })}
+              </div>
+
+              <h3 className="mt-5 text-[18px] font-medium leading-snug text-ink">
+                {p.title}
+              </h3>
+              <p className="mt-1 text-[12px] text-mute">{p.period}</p>
+
+              <p className="mt-4 line-clamp-3 text-[13px] leading-relaxed text-ink-soft">
+                {p.summary}
+              </p>
+
+              {p.proof?.[0] && (
+                <p className="mt-4 line-clamp-1 border-t border-ink/[0.06] pt-3 text-[11px] text-moss">
+                  ↳ {p.proof[0]}
+                </p>
+              )}
+
+              <div className="mt-4 flex flex-wrap gap-1">
+                {p.tags.slice(0, 3).map((t) => (
+                  <span
+                    key={t}
+                    className="rounded-md bg-ink/[0.04] px-1.5 py-0.5 text-[10px] text-ink-soft"
+                  >
+                    {t}
+                  </span>
+                ))}
+              </div>
+
+              <span className="mt-auto inline-flex items-center gap-1 pt-5 text-[12px] text-mute transition-colors group-hover:text-ink">
+                Open detail
+                <span className="transition-transform group-hover:translate-x-0.5">→</span>
+              </span>
+            </motion.button>
+          ))}
         </motion.div>
 
         {filtered.length === 0 && (

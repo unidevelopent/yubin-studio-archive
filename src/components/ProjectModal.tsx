@@ -77,11 +77,11 @@ export function ProjectModal({
               <p className="mt-4 text-[14px] text-mute">{project.role}</p>
 
               {projectImages[project.id] && (
-                <div className="mt-8 overflow-hidden rounded-2xl border border-ink/10 bg-ink/5">
+                <div className="mt-8 flex items-center justify-center overflow-hidden rounded-2xl border border-ink/10 bg-ivory-soft p-6 md:p-8">
                   <img
                     src={projectImages[project.id]!.src}
                     alt={projectImages[project.id]!.alt}
-                    className="h-full w-full object-cover"
+                    className="mx-auto h-auto max-h-[420px] w-auto max-w-full object-contain"
                     loading="lazy"
                   />
                 </div>
