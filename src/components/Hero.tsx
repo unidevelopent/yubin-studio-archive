@@ -99,13 +99,23 @@ export function Hero({
           </span>
         </motion.h1>
 
-        {/* Korean subhead */}
+        {/* Korean subhead — emphasized headline */}
         <motion.p
           {...fadeUp(0.28)}
-          className="mt-10 max-w-3xl text-[20px] font-medium leading-[1.45] tracking-[-0.01em] text-ink md:text-[26px] lg:text-[30px]"
+          className="mt-10 max-w-3xl text-[26px] font-semibold leading-[1.25] tracking-[-0.02em] text-ink md:text-[36px] lg:text-[44px]"
         >
-          실제 문제에서 출발해, 제품과 사업 구조를 설계합니다.
+          아이디어를 시장까지 밀어붙인 기록.
         </motion.p>
+
+        {/* Smaller body paragraph */}
+        <motion.div
+          {...fadeUp(0.34)}
+          className="mt-6 max-w-2xl space-y-1.5 text-[14px] leading-relaxed text-ink-soft md:text-[15px]"
+        >
+          <p>문제를 발견하고, 구조를 설계하고, 팀을 움직이고, 고객을 만났습니다.</p>
+          <p>제품 기획부터 PoC, 제안, 영업, 계약까지.</p>
+          <p>서로 다른 도메인에서 실행과 검증으로 남긴 작업들입니다.</p>
+        </motion.div>
 
         {/* Emphasized method line */}
         <motion.p
