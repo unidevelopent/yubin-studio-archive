@@ -1,0 +1,135 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-ivory text-ink font-sans;
+    font-feature-settings: 'ss01', 'cv11';
+    background-color: #F1ECE2;
+    background-image:
+      radial-gradient(ellipse 100% 60% at 50% -10%, rgba(192, 73, 43, 0.08), transparent 60%),
+      radial-gradient(ellipse 70% 40% at 100% 100%, rgba(74, 93, 58, 0.06), transparent 70%);
+    background-attachment: fixed;
+  }
+
+  ::selection {
+    background-color: rgba(192, 73, 43, 0.25);
+    color: #131211;
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: rgba(19, 18, 17, 0.12);
+    border-radius: 999px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(19, 18, 17, 0.25);
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    body {
+      cursor: none;
+    }
+    a, button, [role="button"], input, textarea, select {
+      cursor: none;
+    }
+  }
+}
+
+@layer components {
+  .label-eyebrow {
+    @apply font-mono text-[11px] uppercase tracking-[0.22em] text-mute;
+  }
+
+  .display-1 {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-weight: 600;
+    letter-spacing: -0.045em;
+    line-height: 0.9;
+  }
+
+  .display-2 {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-weight: 600;
+    letter-spacing: -0.035em;
+    line-height: 0.95;
+  }
+
+  .editorial {
+    font-family: 'Instrument Serif', 'Times New Roman', serif;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    font-style: italic;
+  }
+
+  .surface-card {
+    background: rgba(255, 255, 255, 0.4);
+    border: 1px solid rgba(19, 18, 17, 0.10);
+    backdrop-filter: blur(10px);
+    transition: border-color 0.4s ease, background-color 0.4s ease, transform 0.4s ease, box-shadow 0.4s ease;
+  }
+
+  .surface-card:hover {
+    background: rgba(255, 255, 255, 0.65);
+    border-color: rgba(19, 18, 17, 0.22);
+    box-shadow: 0 24px 60px -32px rgba(19, 18, 17, 0.18);
+  }
+
+  .grain {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.06;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' /%3E%3C/svg%3E");
+    mix-blend-mode: multiply;
+  }
+
+  .divider-line {
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(19, 18, 17, 0.18), transparent);
+  }
+
+  .pill {
+    @apply inline-flex items-center gap-1.5 rounded-full border border-ink/10 bg-white/30 px-3 py-1 text-[11px] font-medium text-ink-soft backdrop-blur-sm;
+  }
+
+  .pill-accent {
+    background: rgba(192, 73, 43, 0.10);
+    border-color: rgba(192, 73, 43, 0.30);
+    color: #8A2F1B;
+  }
+
+  .marquee-mask {
+    -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+    mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+  }
+
+  .ink-link {
+    background-image: linear-gradient(to right, currentColor, currentColor);
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    background-size: 100% 1px;
+    transition: background-size 0.4s ease;
+  }
+  .ink-link:hover {
+    background-size: 0 1px;
+  }
+}
