@@ -206,8 +206,6 @@ export const projects: Project[] = [
     ],
     proof: [
       '314개 창업보육기관 중 255개 도입 (전환율 81.2%)',
-      '서울테크노파크, KAIA, 서울창조경제혁신센터, KOBIA 등 4건 계약',
-      '약 1억 2천만 원 규모 계약 및 협약',
     ],
     tags: ['B2B SaaS', 'Public Sector', 'Data Automation'],
   },
@@ -279,8 +277,6 @@ export const projects: Project[] = [
       'Graph RAG 기반 B2B/B2C 서비스 기획',
     ],
     proof: [
-      '2024년 하반기 매출 6,600만 원 → 2025년 상반기 1억 원 (51.5% 성장)',
-      '진행 중 매출 4억 원',
       '18명 크로스펑셔널 팀 운영',
     ],
     tags: ['CPO', 'AI Agent', 'Graph RAG', 'B2B SaaS'],
@@ -320,7 +316,6 @@ export const projects: Project[] = [
       '업무 자동화 및 의사결정 지원 AI Agent 기획',
       '리드 발굴 → 제안 → 영업 → 계약',
     ],
-    proof: ['총 4억 원 규모 파이프라인'],
     tags: ['Manufacturing', 'MES', 'AI Agent', 'Confidential'],
     isConfidential: true,
   },
